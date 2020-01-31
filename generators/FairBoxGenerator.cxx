@@ -41,7 +41,7 @@ FairBoxGenerator::FairBoxGenerator() :
   fPDGType(0),fMult(0),fPDGMass(0),fPtMin(0),fPtMax(0),
   fPhiMin(0),fPhiMax(0),fEtaMin(0),fEtaMax(0),fYMin(0),fYMax(0),
   fPMin(0),fPMax(0),fThetaMin(0),fThetaMax(0),fX(0),fY(0),fZ(0),
-  fX1(0),fY1(0),fX2(0),fY2(0),fEkinMin(0),fEkinMax(0),
+  fX1(0),fY1(0),fZ1(0),fX2(0),fY2(0),fZ2(0),fEkinMin(0),fEkinMax(0),
   fEtaRangeIsSet(0),fYRangeIsSet(0),fThetaRangeIsSet(0),
   fCosThetaIsSet(0),fPtRangeIsSet(0),fPRangeIsSet(0),
   fPointVtxIsSet(0),fBoxVtxIsSet(0),fDebug(0),fEkinRangeIsSet(0)
@@ -55,7 +55,7 @@ FairBoxGenerator::FairBoxGenerator(Int_t pdgid, Int_t mult) :
   fPDGType(pdgid),fMult(mult),fPDGMass(0),fPtMin(0),fPtMax(0),
   fPhiMin(0),fPhiMax(0),fEtaMin(0),fEtaMax(0),fYMin(0),fYMax(0),
   fPMin(0),fPMax(0),fThetaMin(0),fThetaMax(0),fX(0),fY(0),fZ(0),
-  fX1(0),fY1(0),fX2(0),fY2(0),fEkinMin(0),fEkinMax(0),
+  fX1(0),fY1(0),fZ1(0),fX2(0),fY2(0),fZ2(0),fEkinMin(0),fEkinMax(0),
   fEtaRangeIsSet(0), fYRangeIsSet(0),fThetaRangeIsSet(0),
   fCosThetaIsSet(0), fPtRangeIsSet(0), fPRangeIsSet(0),
   fPointVtxIsSet(0),fBoxVtxIsSet(0),fDebug(0), fEkinRangeIsSet(0)
@@ -73,7 +73,7 @@ FairBoxGenerator::FairBoxGenerator(const FairBoxGenerator& rhs) :
   fEtaMax(rhs.fEtaMax),fYMin(rhs.fYMin),fYMax(rhs.fYMax),
   fPMin(rhs.fPMin),fPMax(rhs.fPMax),fThetaMin(rhs.fThetaMin),
   fThetaMax(rhs.fThetaMax),fX(rhs.fX),fY(rhs.fY),fZ(rhs.fZ),
-  fX1(rhs.fX1),fY1(rhs.fY1),fX2(rhs.fX2),fY2(rhs.fY2),
+  fX1(rhs.fX1),fY1(rhs.fY1),fZ1(rhs.fZ1),fX2(rhs.fX2),fY2(rhs.fY2),fZ2(rhs.fZ2),
   fEkinMin(rhs.fEkinMin),fEkinMax(rhs.fEkinMax),
   fEtaRangeIsSet(rhs.fEtaRangeIsSet), fYRangeIsSet(rhs.fYRangeIsSet),
   fThetaRangeIsSet(rhs.fThetaRangeIsSet),fCosThetaIsSet(rhs.fCosThetaIsSet),
@@ -116,8 +116,10 @@ FairBoxGenerator& FairBoxGenerator::operator=(const FairBoxGenerator& rhs)
   fZ = rhs.fZ;
   fX1 = rhs.fX1;
   fY1 = rhs.fY1;
+  fZ1 = rhs.fZ1;
   fX2 = rhs.fX2;
   fY2 = rhs.fY2;
+  fZ2 = rhs.fZ2;
   fEkinMin = rhs.fEkinMin;
   fEkinMax = rhs.fEkinMax;
   fEtaRangeIsSet = rhs.fEtaRangeIsSet;
@@ -232,6 +234,7 @@ Bool_t FairBoxGenerator::ReadEvent(FairPrimaryGenerator* primGen)
     if (fBoxVtxIsSet) {
       fX = gRandom->Uniform(fX1,fX2);
       fY = gRandom->Uniform(fY1,fY2);
+      fZ = gRandom->Uniform(fZ1,fZ2);
     }
 
     if (fDebug)

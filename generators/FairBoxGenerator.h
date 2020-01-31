@@ -92,12 +92,13 @@ class FairBoxGenerator : public FairGenerator
       fPointVtxIsSet=kTRUE;
     }
 
-    void SetBoxXYZ (Double32_t x1=0, Double32_t y1=0, Double32_t x2=0, Double32_t y2=0, Double32_t z=0) {
+    void SetBoxXYZ (Double32_t x1=0, Double32_t y1=0, Double32_t z1=0, Double32_t x2=0, Double32_t y2=0, Double32_t z2=0) {
       fX1=x1;
       fY1=y1;
+      fZ1=z1;
       fX2=x2;
       fY2=y2;
-      fZ=z;
+      fZ2=z2;
       fBoxVtxIsSet=kTRUE;
     }
 
@@ -131,7 +132,7 @@ class FairBoxGenerator : public FairGenerator
     Double32_t fPMin,   fPMax;       // Momentum range in lab system
     Double32_t fThetaMin, fThetaMax; // Polar angle range in lab system [degree]
     Double32_t fX, fY, fZ;           // Point vertex coordinates [cm]
-    Double32_t fX1, fY1, fX2, fY2;   // Box vertex coords (x1,y1)->(x2,y2)
+    Double32_t fX1, fY1, fZ1, fX2, fY2, fZ2;   // Box vertex coords (x1,y1)->(x2,y2)
     Double32_t fEkinMin,fEkinMax;    // Kinetic Energy range in lab system [GeV]
 
     Bool_t     fEtaRangeIsSet;       // True if eta range is set
